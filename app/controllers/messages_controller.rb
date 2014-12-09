@@ -1,8 +1,5 @@
 require 'twilio-ruby'
 class MessagesController < ApplicationController
-	include Webhookable
-
-	after_filter :set_header
 
    	skip_before_action :verify_authenticity_token
 
