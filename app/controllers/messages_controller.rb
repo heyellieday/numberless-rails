@@ -9,14 +9,13 @@ class MessagesController < ApplicationController
 
 	def create
 
-		Message.create(from: params[:From], body: params[:Body])
+		#Message.create(from: params[:From], body: params[:Body])
 
 		message = "Thanks for the message! I've decided to go Numberless, so please contact me at heyellieday@gmail.com. Go to http://numberless.io for info :)"
 
 	   	twiml = Twilio::TwiML::Response.new do |r|
 	       r.Message message
 	   	end
-	    session["counter"] += 1
 
 	    respond_to do |format|
 	    	format.xml {render xml: twiml.text}
