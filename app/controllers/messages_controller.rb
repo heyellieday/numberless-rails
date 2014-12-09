@@ -5,7 +5,7 @@ class MessagesController < ApplicationController
 
 	def create
 
-		#Message.create(from: params[:From], body: params[:Body])
+		Message.create(from: params[:From], body: params[:Body])
 
 		message = "Thanks for the message! I've decided to go Numberless, so please contact me at heyellieday&#64;gmail.com. Go to http://numberless.io for info :)"
 
