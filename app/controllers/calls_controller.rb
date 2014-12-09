@@ -5,7 +5,7 @@ class CallsController < ApplicationController
 
 	def create
 		response = Twilio::TwiML::Response.new do |r|
-        	r.Play "Hi, this is Ellie's voicemail. She has decided to go Numberless. Please visit heyellieday dot com to get in touch with her."
+        	r.Say "Hi, this is Ellie's voicemail. She has decided to go Numberless. Please visit heyellieday dot com to get in touch with her."
      	end
 
      	render_twiml response
