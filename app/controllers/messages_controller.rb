@@ -12,10 +12,7 @@ class MessagesController < ApplicationController
 	   	twiml = Twilio::TwiML::Response.new do |r|
 	       r.Message message
 	   	end
-
-	    respond_to do |format|
-	    	format.xml {render xml: twiml.text}
-	   	end
+	    render xml: twiml.text
 	end
 
 end
