@@ -1,12 +1,6 @@
 require 'twilio-ruby'
 class MessagesController < ApplicationController
 
-	include Webhookable
-
-   	after_filter :set_header
-
-   	skip_before_action :verify_authenticity_token
-
 	def create
 
 		#Message.create(from: params[:From], body: params[:Body])
@@ -21,4 +15,10 @@ class MessagesController < ApplicationController
 	    	format.xml {render xml: twiml.text}
 	   	end
 	end
+
+		include Webhookable
+
+   	after_filter :set_header
+
+   	skip_before_action :verify_authenticity_token
 end
