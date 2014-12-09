@@ -5,13 +5,12 @@ class CallsController < ApplicationController
 
 
 	def create
-		twiml = Twilio::TwiML::Response.new do |r|
-        	r.Say "Hi, this is Ellie's voicemail. She has decided to go Numberless. Please visit heyellieday dot com to get in touch with her."
-     	end
-     	respond_to do |format|
-	    	format.xml {render xml: twiml.text}
-	   	end
+		message = "Hi, this is Ellie's voicemail. She has decided to go Numberless. Please visit heyellieday dot com to get in touch with her."
 
+		twiml = Twilio::TwiML::Response.new do |r|
+        	r.Say message
+     	end
+	    render xml: twiml.text
 	end
 
 end
