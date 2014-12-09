@@ -7,7 +7,7 @@ class MessagesController < ApplicationController
 
 		#Message.create(from: params[:From], body: params[:Body])
 
-		message = "Thanks for the message! I've decided to go Numberless, so please contact me at heyellieday\@npikegmail.com. Go to http://numberless.io for info :)"
+		message = "Thanks for the message! I've decided to go Numberless, so please contact me at heyellieday&#64;gmail.com. Go to http://numberless.io for info :)"
 
 	   	twiml = Twilio::TwiML::Response.new do |r|
 	       r.Message message
