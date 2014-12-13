@@ -15,4 +15,16 @@ class MessagesController < ApplicationController
 	    render xml: twiml.text
 	end
 
+	def index
+	  	params.permit(:callback)
+	  	if params[:callback]
+	  		respond_to do |format|
+	  			#format.html { render json: {stories: Story.all}}
+		  		format.js { render json: {messages: Message.paginate(page: params[:pagination], :per_page => 50)}, :callback => params[:callback] }
+		  	end
+	  	else
+	  		render json: {messages: Message.all}
+	  	end
+	end
+
 end

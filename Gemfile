@@ -60,6 +60,6 @@ gem 'rest_client'
 
 gem 'json'
 
-gem 'twilio-ruby'
+gem 'twilio-r'
 
 
