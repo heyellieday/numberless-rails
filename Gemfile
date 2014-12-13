@@ -60,6 +60,8 @@ gem 'rest_client'
 
 gem 'json'
 
-gem 'twilio-r'
+gem 'twilio-ruby'
+
+gem 'will_paginate'
 
 
