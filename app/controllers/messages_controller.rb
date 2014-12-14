@@ -4,8 +4,29 @@ class MessagesController < ApplicationController
    	skip_before_action :verify_authenticity_token
 
 	def create
+		params[:To][0] = ""
+		to_number = params[:To]
+		@recipient_number = Number.find_or_create_by_number(number: number)
+		if @recipient_number.user_id === nil
+			@recipient = User.create()
+			@recipient_number.update(user_id: @recipient.id)
+		end
 
-		Message.create(from: params[:From], body: params[:Body])
+		params[:From][0] = ""
+		from_number = params[:From]
+		@sender_number = Number.find_or_create_by_number(number: number)
+		if @sender_number.user_id === nil
+			@sender = User.create()
+			@sender_number.update(user_id: @sender.id)
+		end
+
+		if Conversation.between(@sender_number.user_id, @recipient_number.user_id).present?
+	      @conversation = Conversation.between(@sender_number.user_id, @recipient_number.user_id).first
+	    else
+	      @conversation = Conversation.create!(conversation_params)
+	    end
+
+		@conversation.messages.create(user_id: @sender_number[:user_id], body: params[:Body])
 
 		message = "Hi, it's Ellie. I've decided to go Numberless (gonumberless.com). Please visit heyellieday.com to get in touch!"
 

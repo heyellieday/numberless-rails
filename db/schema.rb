@@ -11,10 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141209173324) do
+ActiveRecord::Schema.define(version: 20141213231408) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "calls", force: true do |t|
+    t.integer  "user_id"
+    t.string   "from"
+    t.float    "duration"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "conversations", force: true do |t|
+    t.integer  "sender_id"
+    t.integer  "recipient_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "conversations", ["recipient_id"], name: "index_conversations_on_recipient_id", using: :btree
+  add_index "conversations", ["sender_id"], name: "index_conversations_on_sender_id", using: :btree
 
   create_table "genders", force: true do |t|
     t.string  "name"
@@ -24,6 +42,14 @@ ActiveRecord::Schema.define(version: 20141209173324) do
   create_table "messages", force: true do |t|
     t.string   "from"
     t.string   "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+  end
+
+  create_table "numbers", force: true do |t|
+    t.integer  "user_id"
+    t.string   "number"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -70,5 +96,13 @@ ActiveRecord::Schema.define(version: 20141209173324) do
   add_index "users", ["email"], name: "index_users_on_email", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["uid"], name: "index_users_on_uid", unique: true, using: :btree
+
+  create_table "voicemails", force: true do |t|
+    t.integer  "call_id"
+    t.float    "duration"
+    t.string   "recording_url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end
