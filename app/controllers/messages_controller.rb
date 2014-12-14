@@ -8,7 +8,8 @@ class MessagesController < ApplicationController
 		to_number = params[:To]
 		@recipient_number = Number.find_or_create_by_number(number: number)
 		if @recipient_number.user_id === nil
-			@recipient = User.create()
+			@recipient = User.new(:email => 'test@example.com', :password => 'password', :password_confirmation => 'password')
+			@recipient.save
 			@recipient_number.update(user_id: @recipient.id)
 		end
 
@@ -16,8 +17,8 @@ class MessagesController < ApplicationController
 		from_number = params[:From]
 		@sender_number = Number.find_or_create_by_number(number: number)
 		if @sender_number.user_id === nil
-			@sender = User.create()
-			@sender_number.update(user_id: @sender.id)
+			@sender = User.new(:email => 'tester@example.com', :password => 'password', :password_confirmation => 'password')
+			@sender.save
 		end
 
 		if Conversation.between(@sender_number.user_id, @recipient_number.user_id).present?
