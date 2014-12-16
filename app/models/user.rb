@@ -6,7 +6,5 @@ class User < ActiveRecord::Base
   has_many :genders
   has_many :pronouns
   has_many :numbers
-  has_many :conversations, :foreign_key => :sender_id
-  has_many :messages, through: :conversations
 
 end

@@ -1,8 +1,8 @@
 class Conversation < ActiveRecord::Base
 	attr_accessor :user_id
-	
-	belongs_to :sender, :foreign_key => :sender_id, class_name: 'User'
-  	belongs_to :recipient, :foreign_key => :recipient_id, class_name: 'User'
+
+	belongs_to :sender, :foreign_key => :sender_id, class_name: 'Number'
+  	belongs_to :recipient, :foreign_key => :recipient_id, class_name: 'Number'
  
 	has_many :messages, dependent: :destroy
  
